@@ -1,348 +1,65 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>가을의 낭만과 감상</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --autumn-gold: #b8860b;
-            --autumn-red: #8b0000;
-            --autumn-orange: #ff4500;
-            --autumn-brown: #8b4513;
-            --text-color: #361f00;
-            --light-text-color: #fcfcfc;
-        }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내 GitHub 사이트</title>
 
+    <style>
         body {
             margin: 0;
-            font-family: 'Noto Serif KR', serif;
-            color: var(--text-color);
-            line-height: 1.8;
-            background-color: #f7f0e6;
-            overflow-x: hidden; /* 가로 스크롤 방지 */
-            position: relative;
-            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f7f7f7;
         }
-
-        .background-image-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
-        }
-
-        .background-image {
-            width: 100%;
-            height: 100%;
-            background-image: url('https://source.unsplash.com/random/1920x1080/?autumn-forest,romantic,sentimental');
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.8) contrast(1.1);
-            animation: panBackground 60s infinite alternate linear;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        @keyframes panBackground {
-            0% { transform: scale(1); background-position: 0% 0%; }
-            50% { transform: scale(1.05); background-position: 100% 100%; }
-            100% { transform: scale(1); background-position: 0% 0%; }
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(247, 240, 230, 0.7) 0%, rgba(247, 240, 230, 0) 50%, rgba(247, 240, 230, 0.7) 100%);
-            z-index: -1;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 40px 30px;
-            background-color: rgba(255, 255, 255, 0.85); /* 약간 투명한 배경 */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            position: relative;
-            z-index: 1;
-            backdrop-filter: blur(3px); /* 배경 블러 효과 */
-        }
-
         header {
+            background: #4a6cf7;
+            color: white;
+            padding: 20px;
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed var(--autumn-brown);
         }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 3.5em;
-            color: var(--autumn-red);
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            font-family: 'Noto Serif KR', serif;
-            font-weight: 700;
-            font-size: 2em;
-            color: var(--autumn-gold);
-            margin-top: 40px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--autumn-orange);
-        }
-
-        p {
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .highlight {
-            color: var(--autumn-red);
-            font-weight: 700;
-        }
-
-        .poem {
-            font-style: italic;
-            text-align: center;
-            margin: 50px 0;
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
             padding: 30px;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-left: 5px solid var(--autumn-gold);
-            border-right: 5px solid var(--autumn-gold);
-            border-radius: 10px;
-            font-size: 1.1em;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
-
-        .poem p {
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-
-        .poem .author {
-            margin-top: 20px;
-            font-weight: 700;
-            color: var(--autumn-brown);
-        }
-
         footer {
             text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px dashed var(--autumn-brown);
-            color: var(--autumn-brown);
-            font-size: 0.9em;
-        }
-
-        /* 낙엽 애니메이션 */
-        .falling-leaves {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .leaf {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23d06224" d="M70.7,4.8c-1.3-1.6-3.4-2.5-5.6-2.5c-0.1,0-0.2,0-0.3,0c-0.2,0-0.4,0-0.6,0.1c-1.3,0.3-2.5,1-3.6,2c-4.4,4.2-7.5,9.8-9,15.7c-0.2,0.9-0.4,1.8-0.6,2.7c-0.4,1.7-0.7,3.5-0.9,5.2c-0.3,2.4-0.4,4.9-0.2,7.3c0.1,1.5,0.4,2.9,0.8,4.3c0.1,0.3,0.2,0.6,0.4,0.9c0.7,1.2,1.6,2.3,2.6,3.3c1.9,1.8,4.1,3.4,6.5,4.7c1.2,0.6,2.5,1.1,3.7,1.5c0.1,0,0.1,0.1,0.2,0.1c0.1,0,0.2,0.1,0.3,0.1c0.3,0.1,0.6,0.2,0.9,0.2c0.2,0,0.4,0,0.6,0c0.6,0,1.2-0.1,1.8-0.3c0.1,0,0.2,0,0.3,0c0.1-0.1,0.3-0.1,0.4-0.2c0.3-0.2,0.6-0.3,0.9-0.5c2.3-1.3,4.4-3,6.2-4.9c2.5-2.6,4.5-5.5,6-8.8c0.8-1.7,1.4-3.5,1.9-5.3c0.3-1.2,0.6-2.4,0.8-3.6c0.1-0.6,0.2-1.2,0.2-1.8c0-0.1,0-0.1,0-0.2c0-0.1,0-0.2,0-0.3C74,10.6,73.1,7.2,70.7,4.8z M46.5,41.9c-2,1.3-4.1,2.5-6.3,3.4c-0.3,0.1-0.6,0.2-0.9,0.3c-0.1,0-0.2,0-0.3,0c-0.2,0-0.4,0-0.6,0c-0.6,0-1.2-0.1-1.8-0.3c-0.1,0-0.2,0-0.3,0c-0.1-0.1-0.3-0.1-0.4-0.2c-0.3-0.2-0.6-0.3-0.9-0.5c-2.3-1.3-4.4-3-6.2-4.9c-2.5-2.6-4.5-5.5-6-8.8c-0.8-1.7-1.4-3.5-1.9-5.3c-0.3-1.2-0.6-2.4-0.8-3.6c-0.1-0.6-0.2-1.2-0.2-1.8c0-0.1,0-0.1,0-0.2c0-0.1,0-0.2,0-0.3c0.1-0.8,0.2-1.7,0.4-2.5c0.7-3,2-5.9,3.8-8.4c1.9-2.6,4.3-4.9,7-6.7c1.4-0.9,2.9-1.6,4.5-2.2c0.1,0,0.2,0,0.3,0c0.1,0,0.2-0.1,0.3-0.1c0.3-0.1,0.6-0.2,0.9-0.2c0.2,0,0.4,0,0.6,0c0.6,0,1.2,0.1,1.8,0.3c0.1,0,0.2,0,0.3,0c0.1,0.1,0.3,0.1,0.4,0.2c0.3,0.2,0.6,0.3,0.9,0.5c2.3,1.3,4.4,3,6.2,4.9c2.5,2.6,4.5,5.5,6,8.8c0.8,1.7,1.4,3.5,1.9,5.3c0.3,1.2,0.6,2.4,0.8,3.6c0.1,0.6,0.2,1.2,0.2,1.8c0,0.1,0,0.1,0,0.2c0,0.1,0,0.2,0,0.3C49.9,36.1,48.8,39.3,46.5,41.9z" /><path fill="%23db9309" d="M70.7,4.8c-1.3-1.6-3.4-2.5-5.6-2.5c-0.1,0-0.2,0-0.3,0c-0.2,0-0.4,0-0.6,0.1c-1.3,0.3-2.5,1-3.6,2c-4.4,4.2-7.5,9.8-9,15.7c-0.2,0.9-0.4,1.8-0.6,2.7c-0.4,1.7-0.7,3.5-0.9,5.2c-0.3,2.4-0.4,4.9-0.2,7.3c0.1,1.5,0.4,2.9,0.8,4.3c0.1,0.3,0.2,0.6,0.4,0.9c0.7,1.2,1.6,2.3,2.6,3.3c1.9,1.8,4.1,3.4,6.5,4.7c1.2,0.6,2.5,1.1,3.7,1.5c0.1,0,0.1,0.1,0.2,0.1c0.1,0,0.2,0.1,0.3,0.1c0.3,0.1,0.6,0.2,0.9,0.2c0.2,0,0.4,0,0.6,0c0.6,0,1.2-0.1,1.8-0.3c0.1,0,0.2,0,0.3,0c0.1-0.1,0.3-0.1,0.4-0.2c0.3-0.2,0.6-0.3,0.9-0.5c2.3-1.3,4.4-3,6.2-4.9c2.5-2.6,4.5-5.5,6-8.8c0.8-1.7,1.4-3.5,1.9-5.3c0.3-1.2,0.6-2.4,0.8-3.6c0.1-0.6,0.2-1.2,0.2-1.8c0-0.1,0-0.1,0-0.2c0-0.1,0-0.2,0-0.3C74,10.6,73.1,7.2,70.7,4.8z" /></svg>');
-            background-size: contain;
-            background-repeat: no-repeat;
-            opacity: 0;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translate(0, -10%) rotateZ(0deg) rotateY(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translate(calc(var(--sway-x)), 105%) rotateZ(720deg) rotateY(180deg);
-                opacity: 0;
-            }
-        }
-
-        /* 오디오 플레이어 스타일 */
-        .audio-player {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 50px;
-            padding: 10px 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .audio-player button {
-            background: none;
-            border: none;
-            font-size: 1.5em;
-            cursor: pointer;
-            color: var(--autumn-brown);
-            margin-right: 10px;
-            transition: color 0.3s ease;
-        }
-
-        .audio-player button:hover {
-            color: var(--autumn-red);
-        }
-
-        .audio-player span {
-            font-family: 'Noto Serif KR', serif;
-            color: var(--text-color);
-            font-size: 0.9em;
+            padding: 20px;
+            margin-top: 40px;
+            color: #555;
         }
     </style>
 </head>
 <body>
-    <div class="background-image-container">
-        <div class="background-image"></div>
-        <div class="overlay"></div>
-    </div>
-    <div class="falling-leaves"></div>
 
-    <div class="container">
-        <header>
-            <h1>Autumn Whispers</h1>
-            <p>스치는 바람결에 실려온 가을의 <span class="highlight">속삭임</span></p>
-        </header>
+<header>
+    <h1>내 GitHub 웹사이트!</h1>
+    <p>간단하게 만든 데모 페이지 😄</p>
+</header>
 
-        <section>
-            <h2>🍂 가을, 그 감성의 계절</h2>
-            <p>
-                창가에 스미는 <span class="highlight">선선한 바람</span>, 붉게 물든 나뭇잎들이 춤추는 풍경. 가을은 유독 우리 마음을 아련하고 감성적으로 만드는 계절입니다. 쨍한 햇살 아래 빛나는 단풍은 짧은 계절의 아름다움을 노래하고, 떨어지는 낙엽은 지나간 시간들을 회상하게 합니다. 이 페이지는 그러한 가을의 정취를 담아 당신에게 작은 위로와 사색의 시간을 선사하고자 합니다.
-            </p>
-            <p>
-                따스한 차 한 잔과 함께 이 페이지를 둘러보며, <span class="highlight">가을만이 줄 수 있는 특별한 감상</span>에 잠겨보세요. 바스락거리는 낙엽 소리가 들리는 듯하고, 고즈넉한 숲길을 걷는 듯한 평온함이 당신의 마음을 어루만질 것입니다.
-            </p>
-        </section>
+<main>
+    <h2>안녕하세요 👋</h2>
+    <p>
+        이 사이트는 GitHub Pages를 사용해 만든 간단한 HTML 페이지입니다.<br>
+        마음대로 수정하면서 테스트해보세요!
+    </p>
 
-        <section class="poem">
-            <p>가을이 오면</p>
-            <p>마음은 더욱 깊어지고,</p>
-            <p>세상은 온통</p>
-            <p>황금빛 물감으로 채색되네.</p>
-            <br>
-            <p>바람결에 실려오는</p>
-            <p>쓸쓸한 멜로디,</p>
-            <p>지나간 추억들이</p>
-            <p>낙엽처럼 흩날린다.</p>
-            <p class="author">- 익명 작가의 가을 단상 중에서 -</p>
-        </section>
+    <h3>링크 예시</h3>
+    <ul>
+        <li><a href="https://github.com" target="_blank">GitHub 바로가기</a></li>
+        <li><a href="#">아직 연결 안 된 링크</a></li>
+    </ul>
 
-        <section>
-            <h2>🍁 나만의 가을 이야기</h2>
-            <p>
-                당신에게 가을은 어떤 의미인가요? 혹시 특별한 <span class="highlight">가을 추억</span>이나, 좋아하는 가을 시가 있으신가요? 이 공간은 잠시 멈춰 서서 당신의 가을을 되새겨보는 곳이 되기를 바랍니다. 찰나의 순간이지만, 가을이 주는 아름다움 속에서 마음의 평화를 찾으시길 바랍니다.
-            </p>
-            <p>
-                붉고 노란 단풍 아래에서, 혹은 저녁노을이 지는 길가에서, 당신은 어떤 생각에 잠길지 궁금합니다. 때로는 고독하게, 때로는 따스하게 다가오는 가을의 모습은 우리에게 많은 영감을 줍니다.
-            </p>
-        </section>
+    <h3>이미지 예시</h3>
+    <img src="https://via.placeholder.com/600x300" alt="임시 이미지" style="width:100%; border-radius: 10px;">
+</main>
 
-        <footer>
-            <p>&copy; 2023 가을의 낭만과 감상. 모든 권리 보유.</p>
-            <p>배경 이미지는 Unsplash에서 랜덤으로 제공됩니다.</p>
-        </footer>
-    </div>
+<footer>
+    © 2025 My GitHub Page
+</footer>
 
-    <div class="audio-player">
-        <button id="playPauseButton">▶</button>
-        <span>가을 분위기 음악</span>
-        <audio id="backgroundMusic" loop>
-            <source src="https://www.chosic.com/wp-content/uploads/2021/07/Autumn-Breeze-main-version.mp3" type="audio/mpeg">
-        </audio>
-    </div>
-
-    <script>
-        // 낙엽 애니메이션 스크립트
-        const fallingLeavesContainer = document.querySelector('.falling-leaves');
-        const numLeaves = 50; // 생성할 낙엽의 개수
-
-        function getRandom(min, max) {
-            return Math.random() * (max - min) + min;
-        }
-
-        function createLeaf() {
-            const leaf = document.createElement('div');
-            leaf.classList.add('leaf');
-            
-            // 초기 위치 (화면 상단)
-            leaf.style.left = `${getRandom(0, 100)}vw`;
-            leaf.style.animationDuration = `${getRandom(10, 25)}s`; // 낙하 시간
-            leaf.style.animationDelay = `${getRandom(0, 10)}s`; // 시작 지연 시간
-            leaf.style.transform = `scale(${getRandom(0.5, 1.2)})`; // 크기
-            
-            // 낙엽 흔들림 정도 (CSS 변수로 전달)
-            leaf.style.setProperty('--sway-x', `${getRandom(-200, 200)}px`); // 좌우 흔들림
-
-            fallingLeavesContainer.appendChild(leaf);
-
-            // 화면을 벗어나면 제거하고 다시 생성 (무한 반복)
-            leaf.addEventListener('animationiteration', () => {
-                leaf.remove();
-                createLeaf();
-            });
-        }
-
-        // 초기 낙엽 생성
-        for (let i = 0; i < numLeaves; i++) {
-            createLeaf();
-        }
-
-        // 배경 음악 재생 스크립트
-        const backgroundMusic = document.getElementById('backgroundMusic');
-        const playPauseButton = document.getElementById('playPauseButton');
-        let isPlaying = false;
-
-        playPauseButton.addEventListener('click', () => {
-            if (isPlaying) {
-                backgroundMusic.pause();
-                playPauseButton.textContent = '▶';
-            } else {
-                backgroundMusic.play();
-                playPauseButton.textContent = '⏸';
-            }
-            isPlaying = !isPlaying;
-        });
-
-        // 사용자의 첫 상호작용 후 음악 자동 재생 시도 (브라우저 정책에 따라 제한될 수 있음)
-        document.addEventListener('DOMContentLoaded', () => {
-            // 주석 처리: 자동 재생은 브라우저 정책으로 인해 사용자 상호작용 없이는 어렵습니다.
-            // backgroundMusic.volume = 0.5; // 볼륨 조절
-            // backgroundMusic.play().then(() => {
-            //     isPlaying = true;
-            //     playPauseButton.textContent = '⏸';
-            // }).catch(error => {
-            //     console.log("자동 재생 실패:", error);
-            // });
-        });
-
-    </script>
 </body>
 </html>
